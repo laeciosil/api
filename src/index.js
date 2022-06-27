@@ -7,17 +7,7 @@ import { AppError } from './errors/AppError.js';
 import { router } from './routes/index.js';
 
 const app = express();
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (process.env.URL_ORIGIN.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        throw new AppError('Not allowed by CORS', 403);
-      }
-    },
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 app.use(router);
